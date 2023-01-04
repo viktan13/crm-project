@@ -9,7 +9,7 @@ import UpdateOrder from "./UpdateOrder";
 
 const OrdersList = (props) => {
 
-    const {orders, clients, jobs, addOrder, deleteOrder} = props;
+    const {orders, clients, jobs, addOrder, deleteOrder, updateOrder} = props;
 
     const orderConfig = [
         {key: 'orderNumber', label: '№', render: (row, index) => <b>{index + 1}</b>,},
@@ -56,6 +56,7 @@ const OrdersList = (props) => {
                     />
                     <UpdateOrder
                         order={row}
+                        updateOrder={updateOrder}
                     />
                 </>
             )

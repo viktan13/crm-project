@@ -100,27 +100,27 @@ const initialOrders = [
         debt: 0,
         statuses: [
             {
-                title: 'In progress',
+                title: 'In progress: ',
                 done: false,
                 date: '',
             },
             {
-                title: 'Job completed',
+                title: 'Job completed: ',
                 done: false,
                 date: '',
             },
             {
-                title: 'Say to client',
+                title: 'Say to client: ',
                 done: false,
                 date: '',
             },
             {
-                title: 'Client received',
+                title: 'Client received: ',
                 done: false,
                 date: '',
             },
             {
-                title: 'Paid',
+                title: 'Paid: ',
                 done: false,
                 date: '',
             },
@@ -134,27 +134,27 @@ const initialOrders = [
         debt: 0,
         statuses: [
             {
-                title: 'In progress',
+                title: 'In progress: ',
                 done: false,
                 date: '',
             },
             {
-                title: 'Job completed',
+                title: 'Job completed: ',
                 done: false,
                 date: '',
             },
             {
-                title: 'Say to client',
+                title: 'Say to client: ',
                 done: false,
                 date: '',
             },
             {
-                title: 'Client received',
+                title: 'Client received: ',
                 done: false,
                 date: '',
             },
             {
-                title: 'Paid',
+                title: 'Paid: ',
                 done: false,
                 date: '',
             },
@@ -206,6 +206,11 @@ function App() {
         setJobs(newJobs);
     }
 
+    const updateOrder = (id, payments, statuses) => {
+        const updOrders = orders.map(el => el.id === id ? {...el, payments, statuses} : el);
+        setOrders(updOrders);
+    }
+
     return (
         <div>
             <Routes>
@@ -217,6 +222,7 @@ function App() {
                         jobs={jobs}
                         addOrder={addOrder}
                         deleteOrder={deleteOrder}
+                        updateOrder={updateOrder}
                     />}/>
                     <Route path="clients" element={<ClientsList
                         clients={clients}
