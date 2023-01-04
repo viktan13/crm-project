@@ -56,7 +56,7 @@ const ServicesList = (props) => {
                     ))}
                 </tr>
                 </thead>
-                <tbody>
+                <tbody className="table-group-divider">
                 {jobs.map(job => <ServicesItem
                     job={job}
                     config={jobConfig}

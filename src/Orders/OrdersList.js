@@ -3,6 +3,7 @@ import DropDownButton from "../common/DropDownButton";
 import OrdersItem from "./OrdersItem";
 import CreateOrder from "./CreateOrder";
 import DeleteOrder from "./DeleteOrder";
+import UpdateOrder from "./UpdateOrder";
 
 
 
@@ -53,6 +54,9 @@ const OrdersList = (props) => {
                         order={row}
                         deleteOrder={deleteOrder}
                     />
+                    <UpdateOrder
+                        order={row}
+                    />
                 </>
             )
         }
@@ -83,7 +87,7 @@ const OrdersList = (props) => {
                     ))}
                 </tr>
                 </thead>
-                <tbody>
+                <tbody className="table-group-divider">
                 {orders.map((el, index) => <OrdersItem
                     order={el}
                     index={index}
