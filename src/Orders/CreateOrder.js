@@ -8,6 +8,7 @@ const CreateOrder = (props) => {
     const [clientId, setClientId] = useState('');
     const [serviceId, setServiceId] = useState('');
     const [initialPayment, setInitialPayment] = useState(0);
+    const [jobPrice, setJobPrice] = useState(0)
 
     function saveButtonHandler() {
         if(clientId === '' || serviceId === '') {
@@ -54,6 +55,7 @@ const CreateOrder = (props) => {
         setClientId('');
         setServiceId('');
         setInitialPayment(0);
+        setJobPrice(0)
 
     }
 
@@ -61,6 +63,13 @@ const CreateOrder = (props) => {
         setClientId('');
         setServiceId('');
         setInitialPayment(0);
+        setJobPrice(0);
+    }
+
+    function serviceSelectHandler(e) {
+        setServiceId(e.target.value);
+        const jobPrice = jobs.find(el => el.id === e.target.value).price;
+        setJobPrice(jobPrice);
     }
 
     return (
@@ -96,15 +105,19 @@ const CreateOrder = (props) => {
                                     className="form-select"
                                     aria-label="Default select example"
                                     value={serviceId}
-                                    onChange={e => setServiceId(e.target.value)}
+                                    onChange={e => serviceSelectHandler(e)}
                                 >
                                     <option selected>Choose service</option>
                                     {jobs.map(el => (
                                         <option value={el.id}>{el.jobName}</option>
                                     ))}
                                 </select>
+                                <div className="input-group mb-3 mt-3">
+                                    <span className="input-group-text bg-primary-subtle">Service price: </span>
+                                    <span className="input-group-text"><b>${jobPrice}</b></span>
+                                </div>
                                 <div className="input-group mb-3">
-                                    <span className="input-group-text" id="basic-addon1">Initial payment:</span>
+                                    <span className="input-group-text bg-primary-subtle" id="basic-addon1" >Initial payment:</span>
                                     <input
                                         type="number"
                                         className="form-control"
