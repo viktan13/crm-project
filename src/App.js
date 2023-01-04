@@ -190,6 +190,12 @@ function App() {
         setJobs(updJobs);
     }
 
+    const deleteOrder = (id) => {
+        console.log(orders);
+        const updOrders = orders.filter(el => el.id !== id);
+        setOrders(updOrders);
+    }
+
     const updateClient = (id, updClient) => {
         const newClients = clients.map(el => el.id === id ? {...el, ...updClient} : el);
         setClients(newClients);
@@ -210,6 +216,7 @@ function App() {
                         clients={clients}
                         jobs={jobs}
                         addOrder={addOrder}
+                        deleteOrder={deleteOrder}
                     />}/>
                     <Route path="clients" element={<ClientsList
                         clients={clients}

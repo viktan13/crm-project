@@ -17,9 +17,9 @@ const CreateOrder = (props) => {
         const selectedClient = clients.find(el => el.id === clientId);
         const selectedJob = jobs.find(el => el.id === serviceId);
         const newOrder = {
-            id: uuidv4(),
             ...selectedClient,
             ...selectedJob,
+            id: uuidv4(),
             payments: initialPayment,
             debt: 0,
             statuses: [
@@ -84,6 +84,7 @@ const CreateOrder = (props) => {
                                     value={clientId}
                                     onChange={e => setClientId(e.target.value)}
                                 >
+                                    <option selected>Choose client</option>
                                     {clients.map(el => (
                                         <option value={el.id}>{el.name}</option>
                                     ))}
@@ -97,6 +98,7 @@ const CreateOrder = (props) => {
                                     value={serviceId}
                                     onChange={e => setServiceId(e.target.value)}
                                 >
+                                    <option selected>Choose service</option>
                                     {jobs.map(el => (
                                         <option value={el.id}>{el.jobName}</option>
                                     ))}

@@ -2,50 +2,61 @@ import React from 'react';
 import DropDownButton from "../common/DropDownButton";
 import OrdersItem from "./OrdersItem";
 import CreateOrder from "./CreateOrder";
+import DeleteOrder from "./DeleteOrder";
 
-const orderConfig = [
-    {key: 'orderNumber', label: '№', render: (row, index) => <b>{index + 1}</b>,},
-    {key: 'name', label: 'Name', render: (row) => <b>{row.name}</b>,},
-    {
-        key: 'service', label: 'Service', render: (row) => (
-            <div>
-                <b>{row.jobName}</b>
-                <p>({row.employee})</p>
-            </div>
-        ),
-    },
-    {key: 'price', label: 'Price', render: (row) => `$${row.price}`},
-    {key: 'payments', label: 'Payments', render: (row) => `$${row.payments}`},
-    {key: 'debt', label: 'Debt', render: (row) => `$${row.price - row.payments}`},
-    {key: 'created', label: 'Created on', render: (row) => row.created},
-    {
-        key: 'statuses', label: 'Statuses', render: (row) => (
-            <ul className="list-unstyled">
-                {row.statuses.map(el => (
-                    <li key={el.name}>{el.done ? el.title + '✓' : el.title}</li>
-                ))}
-            </ul>
-        )
-    },
-    {
-        key: 'dates', label: 'Dates', render: (row) => (
-            <ul className="list-unstyled">
-                {row.statuses.map(el => (
-                    <li key={el.title} className="list-group-item">{el.date}</li>
-                ))}
-            </ul>
-        )
-    },
-    {
-        key: 'actions', label: 'Actions', render: row => <DropDownButton
-            item={row}
-        />
-    }
-]
+
 
 const OrdersList = (props) => {
 
-    const {orders, clients, jobs, addOrder} = props;
+    const {orders, clients, jobs, addOrder, deleteOrder} = props;
+
+    const orderConfig = [
+        {key: 'orderNumber', label: '№', render: (row, index) => <b>{index + 1}</b>,},
+        {key: 'name', label: 'Name', render: (row) => <b>{row.name}</b>,},
+        {
+            key: 'service', label: 'Service', render: (row) => (
+                <div>
+                    <b>{row.jobName}</b>
+                    <p>({row.employee})</p>
+                </div>
+            ),
+        },
+        {key: 'price', label: 'Price', render: (row) => `$${row.price}`},
+        {key: 'payments', label: 'Payments', render: (row) => `$${row.payments}`},
+        {key: 'debt', label: 'Debt', render: (row) => `$${row.price - row.payments}`},
+        {key: 'created', label: 'Created on', render: (row) => row.created},
+        {
+            key: 'statuses', label: 'Statuses', render: (row) => (
+                <ul className="list-unstyled">
+                    {row.statuses.map(el => (
+                        <li key={el.name}>{el.done ? el.title + '✓' : el.title}</li>
+                    ))}
+                </ul>
+            )
+        },
+        {
+            key: 'dates', label: 'Dates', render: (row) => (
+                <ul className="list-unstyled">
+                    {row.statuses.map(el => (
+                        <li key={el.title} className="list-group-item">{el.date}</li>
+                    ))}
+                </ul>
+            )
+        },
+        {
+            key: 'actions', label: 'Actions', render: row => (
+                <>
+                    <DropDownButton
+                        item={row}
+                    />
+                    <DeleteOrder
+                        order={row}
+                        deleteOrder={deleteOrder}
+                    />
+                </>
+            )
+        }
+    ]
 
     return (
         <div>
@@ -60,7 +71,8 @@ const OrdersList = (props) => {
                     className="btn btn-outline-primary"
                     data-bs-toggle="modal"
                     data-bs-target="#createOrderModal"
-                >Create new order</button>
+                >Create new order
+                </button>
             </div>
 
             <table className="table table-striped">
@@ -76,6 +88,7 @@ const OrdersList = (props) => {
                     order={el}
                     index={index}
                     orderConfig={orderConfig}
+
                 />)}
                 </tbody>
             </table>
