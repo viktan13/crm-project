@@ -4,7 +4,7 @@ import Home from "./Home/Home";
 import OrdersList from "./Orders/OrdersList";
 import ClientsList from "./Clients/ClientsList";
 import ServicesList from "./Services/ServicesList";
-import Results from "./Results/Results";
+import ResultsList from "./Results/ResultsList";
 import {useState} from "react";
 import {v4 as uuidv4} from 'uuid';
 
@@ -236,7 +236,9 @@ function App() {
                         deleteJob={deleteJob}
                         updateJob={updateJob}
                     />}/>
-                    <Route path="results" element={<Results/>}/>
+                    <Route path="results" element={<ResultsList
+                        orders={orders}
+                    />}/>
                 </Route>
             </Routes>
         </div>
