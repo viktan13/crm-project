@@ -95,7 +95,7 @@ const CreateOrder = (props) => {
                                 >
                                     <option selected>Choose client</option>
                                     {clients.map(el => (
-                                        <option value={el.id}>{el.name}</option>
+                                        <option value={el.id} selected={false}>{el.name}</option>
                                     ))}
                                 </select>
                             </div>

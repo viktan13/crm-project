@@ -5,7 +5,6 @@ import InputMask from 'react-input-mask'
 
 
 const initialClient = {
-    id: '',
     name: '',
     address: '',
     phoneNumber: '',

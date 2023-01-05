@@ -169,6 +169,7 @@ function App() {
     const [orders, setOrders] = useState(initialOrders)
 
     const addClient = (newClient) => {
+        console.log(newClient);
         setClients([...clients, newClient]);
     }
 
