@@ -25,27 +25,27 @@ const CreateOrder = (props) => {
             debt: 0,
             statuses: [
                 {
-                    title: 'In progress',
+                    title: 'In progress: ',
                     done: false,
                     date: '',
                 },
                 {
-                    title: 'Job completed',
+                    title: 'Job completed: ',
                     done: false,
                     date: '',
                 },
                 {
-                    title: 'Say to client',
+                    title: 'Say to client: ',
                     done: false,
                     date: '',
                 },
                 {
-                    title: 'Client received',
+                    title: 'Client received: ',
                     done: false,
                     date: '',
                 },
                 {
-                    title: 'Paid',
+                    title: 'Paid: ',
                     done: false,
                     date: '',
                 },

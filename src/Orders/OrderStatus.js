@@ -9,6 +9,7 @@ const OrderStatus = (props) => {
     function checkBoxHandler() {
         const isDone = !checked
         setChecked(isDone);
+        console.log(isDone);
         updateStatuses(status.title, isDone)
     }
 

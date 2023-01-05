@@ -10,8 +10,8 @@ const UpdateOrder = (props) => {
     const [updStatuses, setUpdStatuses] = useState(order.statuses)
 
     const updateStatuses = (title, done) => {
-        const newStatuses = updStatuses.map(el => el.title === title && done === true
-            ? {...el, done: done, date: getDate()}
+        const newStatuses = updStatuses.map(el => el.title === title
+            ? {...el, done: done, date: done ? getDate() : ''}
             : el);
         setUpdStatuses(newStatuses);
     }
