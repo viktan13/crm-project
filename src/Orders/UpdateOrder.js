@@ -10,14 +10,19 @@ const UpdateOrder = (props) => {
     const [updStatuses, setUpdStatuses] = useState(order.statuses)
 
     const updateStatuses = (title, done) => {
-        const newStatuses = order.statuses.map(el => el.title === title
+        const newStatuses = updStatuses.map(el => el.title === title && done === true
             ? {...el, done: done, date: getDate()}
             : el);
         setUpdStatuses(newStatuses);
     }
 
     function saveButtonHandler() {
-        updateOrder(order.id, order.payments + newPayment, updStatuses);
+        if (order.price <= order.payments + newPayment) {
+            const newStatusesWithPaid = updStatuses.map(el => el.title === 'Paid: ' ? {...el, done: true} : el)
+            updateOrder(order.id, order.payments + newPayment, newStatusesWithPaid)
+        } else {
+            updateOrder(order.id, order.payments + newPayment, updStatuses);
+        }
         setNewPayment(0);
     }
 
@@ -72,18 +77,20 @@ const UpdateOrder = (props) => {
                             className="btn btn-secondary"
                             data-bs-dismiss="modal"
                             onClick={cancelButtonHandler}
-                        >Close</button>
+                        >Close
+                        </button>
                         <button
                             type="button"
                             className="btn btn-primary"
                             data-bs-dismiss="modal"
                             onClick={saveButtonHandler}
-                        >Save changes</button>
+                        >Save changes
+                        </button>
                     </div>
                 </div>
             </div>
         </div>
-);
+    );
 };
 
 export default UpdateOrder;

@@ -22,7 +22,7 @@ const OrderStatus = (props) => {
                         className="form-check-input"
                         type="checkbox" value=""
                         id="flexCheckDefault"
-                        checked={order.price === order.payments}
+                        checked={order.price <= order.payments}
                     />
                     <label className="form-check-label" htmlFor="flexCheckDefault">
                         {status.title.slice(0, -2)}
