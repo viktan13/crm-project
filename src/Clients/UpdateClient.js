@@ -1,4 +1,5 @@
 import React, {useState} from 'react';
+import InputMask from "react-input-mask";
 
 
 
@@ -42,8 +43,9 @@ const UpdateClient = (props) => {
                             </div>
                             <div className="input-group mb-3">
                                 <span className="input-group-text bg-primary-subtle" id="basic-addon1">Phone #:</span>
-                                <input
+                                <InputMask
                                     type="text"
+                                    mask="999-999-9999"
                                     className="form-control"
                                     aria-describedby="basic-addon1"
                                     value={newClient.phoneNumber}
